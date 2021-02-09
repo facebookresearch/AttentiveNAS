@@ -1,0 +1,158 @@
+# Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
+
+# training attentive nas models with "BestUp-3 (loss)"
+#### models ####
+arch: 'attentive_nas_dynamic_model'
+
+exp_name: "attentive_nas_dynamic_model_bestup3"
+
+batch_size_per_gpu: 32
+sandwich_rule: True
+
+grad_clip_value: 1.0
+
+sampler:
+    method: 'bestup'
+    arch_to_flops_map_file_path: './attentive_nas_data/flops_archs_off_table.map'
+    discretize_step: 25
+    num_trials: 3
+
+augment: "auto_augment_tf"
+
+n_gpu_per_node: 8
+num_nodes: 8
+n_cpu_per_node: 32
+memory_per_node: '128g'
+
+warmup_epochs: 5
+epochs: 360
+start_epoch: 0
+
+label_smoothing: 0.1
+inplace_distill: True
+
+#sync-batchnormalization, suggested to use in bignas
+sync_bn: False
+
+bn_momentum: 0
+bn_eps: 1e-5
+
+post_bn_calibration_batch_num: 64
+
+num_arch_training: 4
+
+models_save_dir: "./saved_models"
+
+#### cloud training resources  ####
+data_loader_workers_per_gpu: 4
+
+########### regularization ################
+# supernet training regularization (the largest network)
+dropout: 0.2
+drop_connect: 0.2
+drop_connect_only_last_two_stages: True
+
+weight_decay_weight: 0.00001
+weight_decay_bn_bias: 0.
+
+## =================== optimizer and scheduler======================== #
+optimizer:
+    method: sgd
+    momentum: 0.9
+    nesterov: True
+
+lr_scheduler:
+    method: "warmup_cosine_lr"
+    base_lr: 0.1
+    clamp_lr_percent: 0.0
+
+
+### distributed training settings ###
+multiprocessing_distributed: True
+dist_backend: 'nccl'
+distributed: True
+
+
+### imagenet dataset ###
+dataset: 'imagenet'
+dataset_dir: "/data/imagenet"
+n_classes: 1000
+drop_last: True
+
+print_freq: 10
+resume: ""
+
+seed: 0
+
+#attentive nas search space
+# c: channels, d: layers, k: kernel size, t: expand ratio, s: stride, act: activation, se: se layer
+supernet_config:
+    use_v3_head: True
+    resolutions: [192, 224, 256, 288]
+    first_conv: 
+        c: [16, 24]
+        act_func: 'swish'
+        s: 2
+    mb1:
+        c: [16, 24]
+        d: [1, 2]
+        k: [3, 5]
+        t: [1]
+        s: 1
+        act_func: 'swish'
+        se: False
+    mb2:
+        c: [24, 32]
+        d: [3, 4, 5]
+        k: [3, 5]
+        t: [4, 5, 6]
+        s: 2
+        act_func: 'swish'
+        se: False
+    mb3:
+        c: [32, 40] 
+        d: [3, 4, 5, 6]
+        k: [3, 5]
+        t: [4, 5, 6]
+        s: 2
+        act_func: 'swish'
+        se: True
+    mb4:
+        c: [64, 72] 
+        d: [3, 4, 5, 6]
+        k: [3, 5]
+        t: [4, 5, 6]
+        s: 2
+        act_func: 'swish'
+        se: False
+    mb5:
+        c: [112, 120, 128] 
+        d: [3, 4, 5, 6, 7, 8]
+        k: [3, 5]
+        t: [4, 5, 6]
+        s: 1
+        act_func: 'swish'
+        se: True
+    mb6:
+        c: [192, 200, 208, 216] 
+        d: [3, 4, 5, 6, 7, 8]
+        k: [3, 5]
+        t: [6]
+        s: 2
+        act_func: 'swish'
+        se: True
+    mb7:
+        c: [216, 224] 
+        d: [1, 2]
+        k: [3, 5]
+        t: [6]
+        s: 1
+        act_func: 'swish'
+        se: True
+    last_conv:
+        c: [1792, 1984]
+        act_func: 'swish'
+
+
+
+

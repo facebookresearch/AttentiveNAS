@@ -49,11 +49,11 @@ We adopt SGD training on 64 GPUs. The mini-batch size is 32 per GPU; all trainin
 - A [accuracy predictor](acc_predictor.joblib) trained via scikit-learn, which takes a subnetwork configuration as input, and outputs its predicted accuracy on ImageNet. 
     - Convert a subnetwork configuration to our accuracy predictor compatibale inputs:
     ```
-            res = [cfg['resolution']]
-                for k in ['width', 'depth', 'kernel_size', 'expand_ratio']:
-                    res += cfg[k]
-                return np.asarray(res).reshape((1, -1))
-            ```
+        res = [cfg['resolution']]
+        for k in ['width', 'depth', 'kernel_size', 'expand_ratio']:
+            res += cfg[k]
+        input = np.asarray(res).reshape((1, -1))
+    ```
 ## License
 The majority of AttentiveNAS is licensed under CC-BY-NC, however portions of the project are available under separate license terms: Once For All is licensed under the Apache 2.0 license.
 

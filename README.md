@@ -1,6 +1,11 @@
 # AttentiveNAS: Improving Neural Architecture Search via Attentive Sampling
 This repository contains our PyTorch training code, evaluation code and pretrained models for AttentiveNAS.
 
+**[Update 06/21]**
+Recenty, we have improved AttentiveNAS using an adaptive knowledge distillation training strategy, 
+see our [AlphaNet repo](https://github.com/facebookresearch/AlphaNet) for more details of this work. 
+[AlphaNet](https://arxiv.org/pdf/2102.07954.pdf) has been accepted by ICML'21.
+
 For more details, please see [AttentiveNAS: Improving Neural Architecture Search via Attentive Sampling](https://arxiv.org/pdf/2011.09011.pdf "AttentiveNAS: Improving Neural Architecture Search via Attentive Sampling") by Dilin Wang, Meng Li, Chengyue Gong and Vikas Chandra.
 
 If you find this repo useful in your research, please consider citing our work:

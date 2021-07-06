@@ -1,5 +1,5 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
-# Implementation adapted from OFA: https://www.google.com/search?q=once+for+all+github
+# Implementation adapted from OFA: https://github.com/mit-han-lab/once-for-all
 
 import copy
 import random

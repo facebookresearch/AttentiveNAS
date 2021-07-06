@@ -1,5 +1,5 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
-# adapted from OFA: https://www.google.com/search?q=once+for+all+github
+# adapted from OFA: https://github.com/mit-han-lab/once-for-all
 
 import torch.nn as nn
 

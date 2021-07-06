@@ -6,6 +6,9 @@ Recenty, we have improved AttentiveNAS using an adaptive knowledge distillation 
 see our [AlphaNet repo](https://github.com/facebookresearch/AlphaNet) for more details of this work. 
 [AlphaNet](https://arxiv.org/pdf/2102.07954.pdf) has been accepted by ICML'21.
 
+**[Update 07/21]**
+We provide an example code for searching the best models of FLOPs vs. accuracy trade-offs at [here](https://github.com/facebookresearch/AlphaNet/blob/master/parallel_supernet_evo_search.py).
+
 For more details, please see [AttentiveNAS: Improving Neural Architecture Search via Attentive Sampling](https://arxiv.org/pdf/2011.09011.pdf "AttentiveNAS: Improving Neural Architecture Search via Attentive Sampling") by Dilin Wang, Meng Li, Chengyue Gong and Vikas Chandra.
 
 If you find this repo useful in your research, please consider citing our work:

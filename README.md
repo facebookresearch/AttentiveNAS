@@ -48,7 +48,7 @@ To reproduce our results:
 ## Training
 To train our AttentiveNAS models from scratch, please run
 ```
-python train_supernet.py --config-file configs/train_attentive_nas_models.yml --machine-rank ${machine_rank} --num-machines ${num_machines} --dist-url ${dist_url}
+python train_attentive_nas.py --config-file configs/train_attentive_nas_models.yml --machine-rank ${machine_rank} --num-machines ${num_machines} --dist-url ${dist_url}
 ```
 We adopt SGD training on 64 GPUs. The mini-batch size is 32 per GPU; all training hyper-parameters are specified in [train_attentive_nas_models.yml](configs/train_attentive_nas_models.yml).
 

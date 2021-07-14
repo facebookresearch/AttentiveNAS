@@ -1,5 +1,5 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
-# implementation adapted from Slimmable: https://www.google.com/search?q=slimmable+github
+# implementation adapted from Slimmable: https://github.com/JiahuiYu/slimmable_networks
 
 """config utilities for yml file."""
 import os

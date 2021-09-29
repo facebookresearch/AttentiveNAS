@@ -18,7 +18,7 @@ class LoaderMeta(type):
         return cls
 
 
-class Loader(yaml.Loader, metaclass=LoaderMeta):
+class Loader(yaml.SafeLoader, metaclass=LoaderMeta):
     """YAML Loader with `!include` constructor.
     """
     def __init__(self, stream):
